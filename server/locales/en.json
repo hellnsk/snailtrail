@@ -1,0 +1,28 @@
+{
+  "home": {
+    "topbar": {
+      "item1": "Table",
+      "item2": "Buttons",
+      "item3": "Form",
+      "item4": "Documents"
+    },
+    "table": {
+        "col1": "ID",
+        "col2": "Character",
+        "col3": "Alignment"
+    },
+    "buttons": {
+      "success": "Success",
+      "alert": "Alert",
+      "submit": "Submit",
+      "open_aside": "Open Aside",
+      "double_icon": "Double Icon",
+      "health": "Check server health"
+    },
+    "message": {
+      "alert": "Oopsie daisy!",
+      "success": "Good job!",
+      "server_status": "Server is running!"
+    }
+  }
+}

@@ -1,0 +1,8 @@
+CLIENT_ID='Your.Client.Id'
+export CLIENT_ID
+CLIENT_SECRET='your-client-secret'
+export CLIENT_SECRET
+REDIRECT_URI='http://your-app.com/ts/oauth2/code'
+export REDIRECT_URI
+SERVER_URL='https://api-sandbox.tradeshift.com/tradeshift/'
+export SERVER_URL

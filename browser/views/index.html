@@ -1,0 +1,337 @@
+<!doctype html>
+<html>
+<head>
+  <!--Custom Styles-->
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="stylesheets/main.css">
+  <!--UI Components-->
+  <script src="//d5wfroyti11sa.cloudfront.net/prod/client/ts-6.0.0-alpha.11.min.js"></script>
+  <!--AngularJS-->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.8/angular.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-translate/2.11.1/angular-translate.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-translate-loader-static-files/2.11.1/angular-translate-loader-static-files.min.js"></script>
+  <script src="javascripts/app.js"></script>
+  <script src="javascripts/home.controller.js"></script>
+</head>
+<body ng-app="tradeshiftApp" ng-controller="HomeCtrl">
+<header data-ts="TopBar" id="home-topbar"></header>
+<main data-ts="Main">
+  <div data-ts="MainContent">
+    <div id="tab0" ng-show="showTab === 0">
+      <div data-ts="Note" class="note">
+        <p> Hello. This is the Tradeshift Sample Starter App, original source is located at
+          <a href="https://github.com/Tradeshift/tradeshift-app-samples">Github.</a>
+        </p>
+        <p>
+          The sample showcases some of the capabilities of the Tradeshift Platform and can also work as something to get you started quickly.
+          The documentation for the platform's features is available <a href="apps.tradeshift.com/documentation">here</a>.
+          Each tab shows a different aspect of our platform and explains what the app is doing.
+          You can learn more about the sample app, their source code, and how to install them
+          <a href="https://github.com/Tradeshift/tradeshift-app-samples">here</a>.
+        </p>
+        <p>
+          This is the so-called Embedded App. The server-side code runs outside of Tradeshift's data center, and is included into
+          the Tradeshift user interface through an iframe. It uses the <a href="http://ui.tradeshift.com">Tradeshift UI Components</a>,
+          which gives it consistent user experience with the rest of Tradeshift Apps. It was configured through Tradeshift.Developer app.
+          It calls the <a href="http://api.tradeshift.com/tradeshift/rest/external/doc">Tradeshift API</a>. Open different tabs to see the different features.
+        </p>
+        <p> The app's UI is written using Angular.js and Tradeshift UI Components.</p>
+      </div>
+    </div>
+    <div id="tab1" ng-show="showTab === 1">
+      <div data-ts="Note" class="note">
+        <p> This is mock data, retrieved from App's server by accessing '/demo/grid-data' URI. It uses
+          <a href="https://tradeshift.github.io/Client-Runtime//#components/table/">Table Tradeshift UI component</a>
+          to display the data.
+        </p>
+      </div>
+      <div data-ts="Table" id="home-table"></div>
+    </div>
+    <div id="tab2" ng-show="showTab === 2">
+      <div data-ts="Note" class="note">
+        <p> Simple page demonstrating <a href="http://ui.tradeshift.com">UI Components</a> such as buttons and form inputs.</p>
+      </div>
+      <menu data-ts="Buttons" class="ts-t-t ts-buttons" style="margin-top:10px">
+        <li>
+          <button class="ts-primary" data-ts.busy="true">
+            <span></span>
+          </button>
+        </li>
+        <li>
+          <button data-ts="Button" class="ts-secondary" ng-click="aside.open()">
+            <span translate="Buttons.Open Aside">Open Aside</span>
+          </button>
+        </li>
+      </menu>
+      <menu data-ts="Buttons" class="ts-t-t ts-join button-success-alert">
+        <li>
+          <button class="ts-primary btn-alert" ng-click="getNotification('success')">
+            <span translate="Buttons.Success">Success</span>
+          </button>
+        </li>
+        <li>
+          <button class="ts-danger btn-success" ng-click="getNotification('alert')">
+            <span translate="Buttons.Alert">Alert</span>
+          </button>
+        </li>
+      </menu>
+
+      <form data-ts="Form" ng-submit="submitForm()">
+        <fieldset>
+          <label>
+            <span>Textarea</span>
+            <textarea disabled></textarea>
+          </label>
+        </fieldset>
+        <fieldset>
+          <label ng-class="text.length ? '' : 'ts-error'">
+            <span>Text</span>
+            <input type="text" ng-model="text" required/>
+          </label>
+          <dl class="ts-errors" ng-hide="text.length">
+            <dt>Can not be empty</dt>
+          </dl>
+        </fieldset>
+        <fieldset>
+          <label>
+            <span>Date</span>
+            <input type="date"/>
+          </label>
+        </fieldset>
+        <fieldset>
+          <label>
+            <span>Select</span>
+            <select>
+              <option value="1" selected>One</option>
+              <option value="2">Two</option>
+              <option value="3">Three</option>
+            </select>
+          </label>
+          <dl class="ts-info">
+            <dt>Only one option available</dt>
+          </dl>
+        </fieldset>
+        <fieldset>
+          <span>Which option?</span>
+          <label>
+            <input type="radio" name="radio"/>
+            <span>Option Uno</span>
+          </label>
+        </fieldset>
+        <fieldset>
+          <label>
+            <input type="radio" name="radio" checked/>
+            <span>Option Deux</span>
+          </label>
+        </fieldset>
+        <fieldset>
+          <span>checkboxes</span>
+          <label>
+            <span>Check me</span>
+            <input type="checkbox"/>
+          </label>
+          <label>
+            <span>No, check me</span>
+            <input type="checkbox" checked/>
+          </label>
+
+        </fieldset>
+        <button data-ts="Button" class="ts-primary btn-submit" type="submit">
+          <span>Submit</span>
+        </button>
+      </form>
+    </div>
+    <div id="tab3" ng-show="showTab === 3">
+      <div data-ts="Note" class="note">
+        <p> Health check is a way Tradeshift can monitor uptime of the third-party app server (this is an upcoming
+          feature in Developer app).  The button '/health' on the server side and displays the result to the user.
+          We recommend that you also implement some monitoring for uptime of your Tradeshift app.
+        </p>
+      </div>
+      <button data-ts="Button" class="ts-primary" ng-click="checkHealth()">
+        <span translate="Buttons.Check server health">Check server health</span>
+      </button>
+    </div>
+    <div id="tab4" ng-show="showTab === 4">
+      <div data-ts="Note" class="note">
+        <p>This example demonstrates calling Tradeshift API.  Below are the documents (if any present) from your Tradeshift account.
+          The app retrieves it by calling Tradeshift API at: {tradeshiftAPIServerURL}/rest/external/documents.
+          The page uses the <a href="https://tradeshift.github.io/Client-Runtime//#components/menus/">Menu</a>
+          Tradeshift UI component to display the data.
+        </p>
+      </div>
+      <menu data-ts="Menu" style="width: 60%;">
+        <li ng-repeat="doc in documents">
+          <button>
+            <span>{{doc.docReceiverCompanyName}}</span>
+            <br/>
+            <div>
+              <span>{{doc.state}} . {{doc.docType}} . {{doc.docId}} . ISSUE DATE {{doc.docIssueDate}}</span>
+              <span style="float:right">{{doc.docTotal}}  {{doc.docCurrency}}</span>
+            </div>
+          </button>
+        </li>
+      </menu>
+    </div>
+    <div id="tab5" ng-show="showTab === 5">
+      <div data-ts="Note" class="note">
+        <p>In this tab, we show you an example of identity information we pass to your application.
+          When you first authorize with Tradeshift using OAuth2, along with access token and refresh token we pass in id_token,
+          which is a JSON Web Token encoding some information about the company and user that's activating your app.
+          You can then use this information to let your app know which user is using the app, and save any mappings
+          between Tradeshift namespace and yours. More info about this
+          <a href="http://apps.tradeshift.com/developers/documentation/#identity_passing">here</a>
+        </p>
+      </div>
+      <div class="inline" style="width: 100%;">
+        <fieldset disabled style="width: 100%;">
+          <label>
+            <span>Original JWT unsigned token</span><br/><br/>
+            <input style="width: 100%;" value="{{jwtInfo.originalJWTToken}}"/>
+          </label>
+        </fieldset>
+        <br/><br/>
+      </div>
+      <div>
+        <table class="token-table">
+          <th>Claim</th>
+          <th>Description</th>
+          <th>Value</th>
+          <tr>
+            <td>userId</td>
+            <td>Tradeshift user UUID</td>
+            <td>{{jwtInfo.userId}}</td>
+          </tr>
+          <tr>
+            <td>companyId</td>
+            <td>Tradeshift organization id</td>
+            <td>{{jwtInfo.companyId}}</td>
+          </tr>
+          <tr>
+            <td>sub</td>
+            <td>Tradeshift account id / user email</td>
+            <td>{{jwtInfo.tradeshiftUserEmail}}</td>
+          </tr>
+          <tr>
+            <td>aud</td>
+            <td>Audience, the recipient token is intended for (App Name in this case)</td>
+            <td>{{jwtInfo.appName}}</td>
+          </tr>
+          <tr>
+            <td>iss</td>
+            <td>Issuer, or URL of server that issued the JWT token</td>
+            <td>{{jwtInfo.iss}}</td>
+          </tr>
+          <tr>
+            <td>jti</td>
+            <td>JWT Unique identifier</td>
+            <td>{{jwtInfo.jwtUniqueIdentifier}}</td>
+          </tr>
+          <tr>
+            <td>iat</td>
+            <td>Issued at time</td>
+            <td>{{jwtInfo.issuedAtTime}} ({{jwtInfo.formatedIssuedAtTime}})</td>
+          </tr>
+          <tr>
+            <td>exp</td>
+            <td>Expiration time</td>
+            <td>{{jwtInfo.expirationTime}} ({{jwtInfo.formatedExpTime}})</td>
+          </tr>
+        </table>
+        <br/>
+        <br/>
+      </div>
+    </div>
+    <div id="tab6" ng-show="showTab === 6">
+      <div data-ts="Note" class="note">
+        <p>This tab demonstrated with the Task List.  Task List is a place where Tradeshift users go for things that they need to take action on.  Through API, you can create new tasks, get list of tasks and complete tasks. Below you see some of the internal ids for the tasks assigned to the current user.  This page is generated by calling the API: {tradeshiftAPIServerURL}/rest/external/tasks?limit=25&page=0.  For rendering your tasks inside Tradeshift (accomplished by javascript handler that runs inside Tradehift JavaScript browser runtime), you will currently need to work with the Tradeshit Apps enablement team.
+        </p>
+      </div>
+      <button data-ts="Button" class="ts-primary" ng-click="createTask()">
+        <span>Create Task</span>
+      </button>
+      <table>
+        <th>Task ID</th>
+        <th>Handler</th>
+        <th>State</th>
+        <th>Created On</th>
+        <th>Assignees</th>
+        <br/>
+        <tr style="padding-top: 20px;" ng-repeat="task in tasks">
+          <td style="width: 21%;padding: 10px 5px 0;">{{task.id}}</td>
+          <td style="width: 23%;padding: 10px 5px 0;">{{task.handler}}</td>
+          <td style="width: 8%;padding: 10px 5px 0;">{{task.state}}</td>
+          <td style="width: 16%;padding: 10px 5px 0;">{{task.createdOn}}</td>
+          <td style="width: 20%;padding: 10px 5px 0;">
+            <div ng-repeat="assignee in task.assignees">
+              <span>{{assignee}}</span><br/>
+            </div>
+          </td>
+          <td style="padding: 10px 5px 0;" ng-if = "!task.completedOn">
+            <button data-ts="Button" class="ts-primary" ng-click="completeTask(task.id)">
+              <span>Complete Task</span>
+            </button>
+          </td>
+          <td style="padding: 10px 5px 0;" ng-if = "task.completedOn">
+            <div data-ts="Note">
+              <p>Completed</p>
+            </div>
+          </td>
+        </tr>
+      </table>
+    </div>
+    <div id="tab7" ng-show="showTab === 7">
+      <div data-ts="Note" class="note">
+        <p>This tab demonstrates Event List. Event data is received from Tradeshift webhooks.
+          More info about this <a href="http://apps.tradeshift.com/developers/documentation/#webhooks">here</a>
+        </p>
+      </div>
+      <table class="webhook-table">
+        <tr>
+          <th>Event ID</th>
+          <th>Tradeshift User ID</th>
+          <th>Tradeshift Company Account ID</th>
+          <th>Tradeshift User Language</th>
+          <th>Event Type</th>
+        </tr>
+        <tr ng-repeat="event in eventList">
+          <td ng-bind="event.id"></td>
+          <td style="width: 22%" ng-bind="event.tsUserId"></td>
+          <td ng-bind="event.tsCompanyAccountId"></td>
+          <td style="width: 10%;" ng-bind="event.tsUserLanguage"></td>
+          <td ng-bind="event.event"></td>
+        </tr>
+      </table>
+    </div>
+    <div id="tab8" ng-show="showTab === 8">
+      <div data-ts="Note" class="note">
+        <p>
+          This tab represents your company data using <a href="https://tradeshift.github.io/Client-Runtime//#components/companycards/">CompanyCard</a>
+          UI Component. We're accessing this by calling Tradeshift API: /account/info.
+        </p>
+      </div>
+      <div data-ts="CompanyCard" id="home-card"></div>
+    </div>
+    <div id="tab9" ng-show="showTab === 9">
+      <div data-ts="Note" class="note">
+        <p>
+          This page represents simple error handling. Try to send requests by clicking buttons below.
+        </p>
+      </div>
+      <button data-ts="Button" class="ts-secondary" ng-click="sendFailingRequest(404)">
+        <span>Send non existing request</span>
+      </button>
+      <button data-ts="Button" class="ts-secondary" ng-click="sendFailingRequest(400)">
+        <span>Send bad request</span>
+      </button>
+    </div>
+
+  </div>
+</main>
+<aside data-ts="Aside" id="home-aside">
+  <div data-ts="Panel">
+    <p>Aside content</p>
+  </div>
+</aside>
+</body>
+</html>

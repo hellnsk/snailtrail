@@ -1,0 +1,43 @@
+.btn-submit {
+  margin-bottom: 20px;
+  width: 20vw;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}
+.padding-left {
+  padding-left: 10px;
+}
+.note {
+  margin-top: 20px;
+}
+.note a {
+  color: #20a0e9 !important;
+}
+.inline {
+  float:left;
+  margin-left: 3%;
+}
+
+.token-table {
+  margin: auto;
+}
+.token-table th {
+  text-align: left;
+  padding-left: 1%;
+}
+.token-table td {
+  width: 5%;
+  padding-left: 1%;
+}
+
+.webhook-table {
+  margin: auto;
+}
+.webhook-table th {
+  text-align: left;
+  padding-left: 1%;
+}
+.webhook-table td {
+  padding-left: 1%;
+}

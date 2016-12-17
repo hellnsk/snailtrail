@@ -1,0 +1,32 @@
+{
+  "Topbar": {
+    "Intro": "Introduction",
+    "Table": "Table UI Component",
+    "Buttons": "Button and Forms, I18N",
+    "Health": "Health Check",
+    "Documents": "Documents API",
+    "JWTTokenInfo": "JWT-Token-Info",
+    "TaskList": "Task List",
+    "CompanyCard": "Company Card",
+    "WebHooks": "WebHooks",
+    "Error": "Error Handling"
+  },
+  "Table": {
+    "ID": "ID",
+    "Character": "Character",
+    "Alignment": "Alignment"
+  },
+  "Buttons": {
+    "Success": "Success",
+    "Alert": "Alert",
+    "Submit": "Submit",
+    "Open Aside": "Open Aside",
+    "Double Icon": "Double Icon",
+    "Check server health": "Check server health"
+  },
+  "Message": {
+    "Oopsie daisy!": "Oopsie daisy!",
+    "Good job!": "Good job!",
+    "Server is running!": "Server is running!"
+  }
+}
