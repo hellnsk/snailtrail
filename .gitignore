@@ -1,5 +1,6 @@
 node_modules
 .idea
+.ssh
 npm-debug.log
 config.sh
 nohup.out
